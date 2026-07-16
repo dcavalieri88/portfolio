@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAVIDE G. CAVALIERI // TACTICAL COMMAND</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent-hot: #ff0055;
+            --accent-electric: #0055ff;
+            --accent-solar: #ffb703;
+            --accent-matrix: #00b4d8;
+            --border-width: 4px;
+            --shadow: 6px 6px 0px #0f172a;
+            --shadow-hover: 2px 2px 0px #0f172a;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-heading);
+            padding: 30px 15px;
+            line-height: 1.5;
+        }
+
+        .wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Header Principale */
+        .hero {
+            background-color: var(--card-bg);
+            border: var(--border-width) solid var(--text-main);
+            box-shadow: var(--shadow);
+            padding: 40px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "OPS";
+            position: absolute;
+            right: -20px;
+            bottom: -40px;
+            font-family: var(--font-mono);
+            font-size: 140px;
+            color: rgba(15, 23, 42, 0.03);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge-status {
+            display: inline-block;
+            background-color: var(--accent-solar);
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border: 2px solid var(--text-main);
+            margin-bottom: 20px;
+            box-shadow: 3px 3px 0px var(--text-main);
+        }
+
+        h1 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .subtitle {
+            font-family: var(--font-mono);
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .contact-cta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background-color: var(--text-main);
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 700;
+            padding: 12px 24px;
+            border: var(--border-width) solid var(--text-main);
+            text-decoration: none;
+            box-shadow: 4px 4px 0px var(--accent-hot);
+            transition: transform 0.1s, box-shadow 0.1s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--accent-hot);
+        }
+
+        .btn.secondary {
+            background-color: #ffffff;
+            color: var(--text-main);
+            box-shadow: 4px 4px 0px var(--accent-electric);
+        }
+
+        .btn.secondary:hover {
+            box-shadow: 2px 2px 0px var(--accent-electric);
+        }
+
+        /* Selezionatore di Vista / Filtri */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: #ffffff;
+            border: 3px solid var(--text-main);
+            padding: 10px 18px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px var(--text-main);
+            transition: all 0.1s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-electric);
+            color: #ffffff;
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px var(--text-main);
+        }
+
+        /* Griglia delle Esperienze */
+        .grid-sections {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: var(--border-width) solid var(--text-main);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 8px 8px 0px var(--text-main);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .card-company {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            background-color: var(--accent-solar);
+            padding: 4px 10px;
+            border: 2px solid var(--text-main);
+            font-weight: 700;
+        }
+
+        .card-period {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .card-body ul {
+            list-style: none;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card-body li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 17px;
+            color: var(--text-muted);
+        }
+
+        .card-body li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent-hot);
+            font-weight: 700;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            background-color: #f1f5f9;
+            border: 2px solid var(--text-main);
+            padding: 4px 8px;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--text-muted);
+            border-top: 3px dashed var(--text-main);
+            padding-top: 25px;
+        }
+
+        /* Responsive */
+        @media(min-width: 768px) {
+            .grid-sections {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <header class="hero">
+            <div class="hero-content">
+                <div class="badge-status">STATUS: SYSTEM READY & DEPLOYED</div>
+                <h1>DAVIDE G. CAVALIERI</h1>
+                <p class="subtitle">System Administrator Senior // Gestione Crisi & Infrastrutture Critiche</p>
+                <div class="contact-cta">
+                    <a href="mailto:d.cavalieri88@gmail.com" class="btn">[CONTattami]</a>
+                    <a href="https://www.linkedin.com/in/davide-cavalieri-80764449/" target="_blank" class="btn secondary">[PROFILO LINKEDIN]</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterCards('all')">TUTTE LE OPERAZIONI</button>
+            <button class="filter-btn" onclick="filterCards('it')">STAGE 1: IT & INFRASTRUCTURE</button>
+            <button class="filter-btn" onclick="filterCards('ops')">STAGE 2: FIELD OPS & EMERGENCY</button>
+        </div>
+
+        <div class="grid-sections">
+            
+            <div class="card" data-category="it">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Sistemista Informatico Senior</div>
+                        <div class="card-period">2021 - Presente</div>
+                    </div>
+                    <div class="card-company">VIDAS</div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Gestione e risoluzione guasti hardware e software critici per il personale clinico in ambiente sanitario.</li>
+                        <li>Amministrazione avanzata Active Directory e protezione rigorosa dei dati aziendali sensibili.</li>
+                        <li>Deployment, policy di sicurezza e controllo dispositivi mobili tramite piattaforme MDM dedicate.</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">ACTIVE DIRECTORY</span>
+                        <span class="tag">MDM</span>
+                        <span class="tag">TROUBLESHOOTING</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-category="it">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Tecnico Sistemi Informatici</div>
+                        <div class="card-period">2012 - 2021</div>
+                    </div>
+                    <div class="card-company">TIMEWARE</div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Supporto sistemistico specializzato per infrastrutture complesse nel settore retail e hospitality.</li>
+                        <li>Progettazione, controllo e verifica costante dei sistemi di backup e disaster recovery.</li>
+                        <li>Architettura e configurazione reti locali e postazioni di lavoro ad alte prestazioni.</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">NETWORKING</span>
+                        <span class="tag">DISASTER RECOVERY</span>
+                        <span class="tag">RETAIL IT</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-category="it">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Tecnico Hardware e Sistemi</div>
+                        <div class="card-period">2011 - 2012</div>
+                    </div>
+                    <div class="card-company">MEDAN S.P.A.</div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Manutenzione straordinaria e riparazione hardware direttamente on site presso i clienti.</li>
+                        <li>Installazione, configurazione e gestione server di posta elettronica aziendali.</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">FIELD SERVICE</span>
+                        <span class="tag">MAIL SERVERS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-category="ops">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Logistica d'Emergenza e Campi Base</div>
+                        <div class="card-period">Operativo sul Campo</div>
+                    </div>
+                    <div class="card-company">CROCE ROSSA & PROTEZIONE CIVILE</div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Pianificazione tattica e allestimento rapido di campi base e tende di accoglienza in scenari critici.</li>
+                        <li>Coordinamento digitale dei flussi logistici e materiali di soccorso sotto pressione estrema.</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">LOGISTICA CRITICA</span>
+                        <span class="tag">PROTEZIONE CIVILE</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-category="ops">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Telecomunicazioni Radio e Sale Operative</div>
+                        <div class="card-period">Specializzato</div>
+                    </div>
+                    <div class="card-company">OPERATORE RADIO</div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Installazione e gestione ponti radio campali per il collegamento interforze e coordinamento unità.</li>
+                        <li>Gestione flussi di comunicazione in stazioni radio mobili per garantire la sicurezza delle squadre.</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">PONTI RADIO</span>
+                        <span class="tag">SALE OPERATIVE</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-category="ops">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Pilota Droni e Conduzione Mezzi Speciali</div>
+                        <div class="card-period">Abilitazioni Nazionali</div>
+                    </div>
+                    <div class="card-company">SPECIAL OPS</div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Pilotaggio APR per ricognizione aerea avanzata e monitoraggio rapido aree sinistrate.</li>
+                        <li>Guida operativa in emergenza e conduzione di mezzi pesanti e macchine movimento terra.</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">APR / DRONI</span>
+                        <span class="tag">GUIDA EMERGENZA</span>
+                        <span class="tag">MEZZI PESANTI</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            DAVIDE G. CAVALIERI // AFFIDABILITÀ E CONTROLLO SOTTO PRESSIONE
+        </footer>
+    </div>
+
+    <script>
+        function filterCards(category) {
+            const cards = document.querySelectorAll('.card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
