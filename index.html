@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Davide Giovanni Cavalieri - Sistemista e Gestione Emergenze</title>
-    <meta name="description" content="Portfolio professionale di Davide Giovanni Cavalieri, sistemista senior e logista specializzato per la gestione di infrastrutture critiche ed emergenze.">
+    <meta name="description" content="Portfolio professionale di Davide Giovanni Cavalieri, sistemista senior e logista super specializzato per la gestione di infrastrutture critiche ed emergenze.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -54,11 +54,36 @@
             font-weight: 700;
             padding: 6px 12px;
             border: 2px solid var(--testo-principale);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             box-shadow: 3px 3px 0px var(--testo-principale);
         }
+        .intestazione-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        @media(min-width: 768px) {
+            .intestazione-layout {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+        .intestazione-testo {
+            flex: 1;
+        }
+        .foto-profilo {
+            width: 100%;
+            max-width: 260px;
+            height: auto;
+            border: var(--spessore-bordo) solid var(--testo-principale);
+            box-shadow: 4px 4px 0px var(--testo-principale);
+            display: block;
+            object-fit: cover;
+            filter: grayscale(100%);
+        }
         h1 {
-            font-size: clamp(32px, 5vw, 56px);
+            font-size: clamp(32px, 5vw, 52px);
             font-weight: 700;
             letter-spacing: -1px;
             margin-bottom: 10px;
@@ -73,7 +98,6 @@
             font-size: 17px;
             color: var(--testo-attenuato);
             margin-bottom: 25px;
-            max-width: 800px;
         }
         .azioni-contatto {
             display: flex;
@@ -215,15 +239,22 @@
     <div class="contenitore">
         <header class="intestazione-principale">
             <div class="stato-sistema">STATO: OPERATIVO E CONNESSO</div>
-            <h1>Davide Giovanni Cavalieri</h1>
-            <p class="sottotitolo">Sistemista Senior e Logista Super Specializzato</p>
-            <p class="descrizione-profilo">
-                Unione di competenze tecniche strutturate in ambito sanitario e aziendale con una solida esperienza nella gestione di emergenze sul campo, logistica avanzata e telecomunicazioni di soccorso. Affidabilità e controllo assoluto sotto pressione.
-            </p>
-            <div class="azioni-contatto">
-                <a href="mailto:d.cavalieri88@gmail.com" class="bottone">[SCRIVIMI]</a>
-                <a href="https://www.linkedin.com/in/davide-cavalieri-80764449/" target="_blank" class="bottone secondario">[PROFILO PROFESSIONALE]</a>
-                <a href="Cavalieri2026.pdf" download class="bottone speciale">[SCARICA CURRICULUM]</a>
+            <div class="intestazione-layout">
+                <div class="intestazione-testo">
+                    <h1>Davide Giovanni Cavalieri</h1>
+                    <p class="sottotitolo">Sistemista Senior e Logista Super Specializzato</p>
+                    <p class="descrizione-profilo">
+                        Unione di competenze tecniche strutturate in ambito sanitario e aziendale con una solida esperienza nella gestione di emergenze sul campo, logistica avanzata e telecomunicazioni di soccorso. Affidabilità e controllo assoluto sotto pressione.
+                    </p>
+                    <div class="azioni-contatto">
+                        <a href="mailto:d.cavalieri88@gmail.com" class="bottone">[SCRIVIMI]</a>
+                        <a href="https://www.linkedin.com/in/davide-cavalieri-80764449/" target="_blank" class="bottone secondario">[PROFILO PROFESSIONALE]</a>
+                        <a href="Cavalieri2026.pdf" download class="bottone speciale">[SCARICA CURRICULUM]</a>
+                    </div>
+                </div>
+                <div>
+                    <img src="fotoprofilo.png" alt="Davide Giovanni Cavalieri" class="foto-profilo">
+                </div>
             </div>
         </header>
 
