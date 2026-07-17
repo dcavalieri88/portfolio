@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Davide Giovanni Cavalieri - Sistemista Senior & Logista d'Emergenza</title>
+    <title>Davide Giovanni Cavalieri - Sistemista Senior & Logista Specializzato</title>
     
     <!-- SEO Meta Tags per HR e Recruiter -->
     <meta name="description" content="Portfolio ufficiale di Davide Giovanni Cavalieri. Sistemista Senior in ambito sanitario e logista specializzato nella gestione di infrastrutture critiche ed emergenze.">
@@ -11,8 +11,8 @@
     <meta name="author" content="Davide Giovanni Cavalieri">
     
     <!-- Open Graph per condivisione social/LinkedIn -->
-    <meta property="og:title" content="Davide Giovanni Cavalieri - Sistemista Senior & Logista d'Emergenza">
-    <meta property="og:description" content="Infrastrutture IT critiche, gestione emergenze e logistica avanzata. Scopri il mio profilo professionale.">
+    <meta property="og:title" content="Davide Giovanni Cavalieri - Sistemista Senior & Logista Specializzato">
+    <meta property="og:description" content="Infrastrutture IT critiche, gestione emergenze e logistica specializzata. Scopri il mio profilo professionale.">
     <meta property="og:type" content="profile">
     
     <!-- Dati Strutturati Schema.org per Google -->
@@ -46,15 +46,30 @@
             --colore-elettrico: #0055ff;
             --colore-solare: #ffb703;
             --colore-verde: #10b981;
+            --colore-etichetta: #f1f5f9;
             --spessore-bordo: 4px;
-            --ombra: 6px 6px 0px #0f172a;
+            --ombra: 6px 6px 0px var(--testo-principale);
             --font-titolo: 'Space Grotesk', sans-serif;
             --font-codice: 'JetBrains Mono', monospace;
         }
+
+        /* Variabili per la modalità scura */
+        body.dark-mode {
+            --colore-sfondo: #0f172a;
+            --colore-card: #1e293b;
+            --testo-principale: #f8fafc;
+            --testo-attenuato: #cbd5e1;
+            --colore-caldo: #ff2a75;
+            --colore-elettrico: #3b82f6;
+            --colore-solare: #eab308;
+            --colore-etichetta: #334155;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
         body {
             background-color: var(--colore-sfondo);
@@ -74,18 +89,45 @@
             padding: 40px;
             margin-bottom: 30px;
         }
+        
+        /* Barra di controllo superiore (Stato + Switch Tema) */
+        .barra-superiore {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
         .stato-sistema {
             display: inline-block;
             background-color: var(--colore-solare);
+            color: #0f172a; /* Testo sempre scuro per leggibilità sul giallo */
+            font-family: var(--font-codice);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border: 2px solid var(--testo-principale);
+            box-shadow: 3px 3px 0px var(--testo-principale);
+        }
+        .bottone-tema {
+            background-color: var(--colore-card);
             color: var(--testo-principale);
             font-family: var(--font-codice);
             font-size: 12px;
             font-weight: 700;
             padding: 6px 12px;
             border: 2px solid var(--testo-principale);
-            margin-bottom: 25px;
             box-shadow: 3px 3px 0px var(--testo-principale);
+            cursor: pointer;
         }
+        .bottone-tema:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px var(--testo-principale);
+        }
+        .bottone-tema:active {
+            transform: translate(1px, 1px);
+            box-shadow: 2px 2px 0px var(--testo-principale);
+        }
+
         .intestazione-layout {
             display: flex;
             flex-direction: column-reverse;
@@ -143,7 +185,7 @@
         }
         .bottone {
             background-color: var(--testo-principale);
-            color: #ffffff;
+            color: var(--colore-card);
             font-family: var(--font-codice);
             font-size: 14px;
             font-weight: 700;
@@ -156,13 +198,13 @@
             text-align: center;
         }
         .bottone.secondario {
-            background-color: #ffffff;
+            background-color: var(--colore-card);
             color: var(--testo-principale);
             box-shadow: 4px 4px 0px var(--colore-elettrico);
         }
         .bottone.speciale {
             background-color: var(--colore-solare);
-            color: var(--testo-principale);
+            color: #0f172a;
             box-shadow: 4px 4px 0px var(--testo-principale);
         }
         .bottone.whatsapp {
@@ -171,7 +213,7 @@
             box-shadow: 4px 4px 0px var(--testo-principale);
         }
         .bottone.rubrica {
-            background-color: #ffffff;
+            background-color: var(--colore-card);
             color: var(--testo-principale);
             box-shadow: 4px 4px 0px var(--colore-verde);
         }
@@ -182,7 +224,8 @@
             flex-wrap: wrap;
         }
         .bottone-filtro {
-            background-color: #ffffff;
+            background-color: var(--colore-card);
+            color: var(--testo-principale);
             border: 3px solid var(--testo-principale);
             padding: 10px 18px;
             font-family: var(--font-codice);
@@ -230,6 +273,7 @@
             font-family: var(--font-codice);
             font-size: 13px;
             background-color: var(--colore-solare);
+            color: #0f172a;
             padding: 4px 10px;
             border: 2px solid var(--testo-principale);
             font-weight: 700;
@@ -268,7 +312,7 @@
         .etichetta {
             font-family: var(--font-codice);
             font-size: 12px;
-            background-color: #f1f5f9;
+            background-color: var(--colore-etichetta);
             border: 2px solid var(--testo-principale);
             padding: 4px 8px;
             font-weight: 700;
@@ -292,9 +336,23 @@
     </style>
 </head>
 <body>
+    <!-- Script di blocco immediato per evitare flash del tema chiaro se il tema scuro è attivo -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
+
     <div class="contenitore">
         <header class="intestazione-principale">
-            <div class="stato-sistema">STATO: OPERATIVO E CONNESSO</div>
+            <div class="barra-superiore">
+                <div class="stato-sistema">STATO: OPERATIVO E CONNESSO</div>
+                <button class="bottone-tema" id="btn-tema" onclick="toggleTema()">[MODO SCURO]</button>
+            </div>
             <div class="intestazione-layout">
                 <div class="intestazione-testo">
                     <h1>Davide Giovanni Cavalieri</h1>
@@ -471,6 +529,27 @@
     </div>
 
     <script>
+        // Sistema di gestione del tema scuro / chiaro
+        function applicaTestoBottone(isDark) {
+            const btn = document.getElementById('btn-tema');
+            if (btn) {
+                btn.textContent = isDark ? '[MODO CHIARO]' : '[MODO SCURO]';
+            }
+        }
+
+        function toggleTema() {
+            const isDark = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            applicaTestoBottone(isDark);
+        }
+
+        // Sincronizza il testo del bottone all'avvio della pagina
+        document.addEventListener('DOMContentLoaded', () => {
+            const isDarkActive = document.body.classList.contains('dark-mode');
+            applicaTestoBottone(isDarkActive);
+        });
+
+        // Logica per i filtri di ricerca
         function filtraRiquadri(categoria, elemento) {
             const riquadri = document.querySelectorAll('.riquadro');
             const bottoni = document.querySelectorAll('.bottone-filtro');
