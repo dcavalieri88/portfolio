@@ -60,8 +60,9 @@
         }
         .intestazione-layout {
             display: flex;
-            flex-direction: column;
+            flex-direction: column-reverse;
             gap: 30px;
+            align-items: center;
         }
         @media(min-width: 768px) {
             .intestazione-layout {
@@ -98,12 +99,19 @@
         .descrizione-profilo {
             font-size: 17px;
             color: var(--testo-attenuato);
-            margin-bottom: 25px;
         }
         .azioni-contatto {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px dashed var(--testo-principale);
+        }
+        @media(min-width: 1024px) {
+            .azioni-contatto {
+                flex-wrap: nowrap;
+            }
         }
         .bottone {
             background-color: var(--testo-principale);
@@ -111,11 +119,13 @@
             font-family: var(--font-codice);
             font-size: 14px;
             font-weight: 700;
-            padding: 12px 24px;
+            padding: 12px 20px;
             border: var(--spessore-bordo) solid var(--testo-principale);
             text-decoration: none;
             box-shadow: 4px 4px 0px var(--colore-caldo);
             cursor: pointer;
+            white-space: nowrap;
+            text-align: center;
         }
         .bottone.secondario {
             background-color: #ffffff;
@@ -257,17 +267,18 @@
                     <p class="descrizione-profilo">
                         Unione di competenze tecniche strutturate in ambito sanitario e aziendale con una solida esperienza nella gestione di emergenze sul campo, logistica avanzata e telecomunicazioni di soccorso. Affidabilità e controllo assoluto sotto pressione.
                     </p>
-                    <div class="azioni-contatto">
-                        <a href="mailto:d.cavalieri88@gmail.com" class="bottone">[SCRIVIMI]</a>
-                        <a href="https://wa.me/393472693646" target="_blank" class="bottone whatsapp">[WHATSAPP]</a>
-                        <a href="contatto.vcf" download class="bottone rubrica">[SALVA CONTATTO]</a>
-                        <a href="https://www.linkedin.com/in/davide-cavalieri-80764449/" target="_blank" class="bottone secondario">[PROFILO PROFESSIONALE]</a>
-                        <a href="Cavalieri2026.pdf" download class="bottone speciale">[SCARICA CURRICULUM]</a>
-                    </div>
                 </div>
                 <div>
                     <img src="fotoprofilo.png" alt="Davide Giovanni Cavalieri" class="foto-profilo">
                 </div>
+            </div>
+            
+            <div class="azioni-contatto">
+                <a href="mailto:d.cavalieri88@gmail.com" class="bottone">[SCRIVIMI]</a>
+                <a href="https://wa.me/39IL_TUO_NUMERO" target="_blank" class="bottone whatsapp">[WHATSAPP]</a>
+                <a href="contatto.vcf" download class="bottone rubrica">[SALVA CONTATTO]</a>
+                <a href="https://www.linkedin.com/in/davide-cavalieri-80764449/" target="_blank" class="bottone secondario">[PROFILO PROFESSIONALE]</a>
+                <a href="Cavalieri2026.pdf" download class="bottone speciale">[SCARICA CURRICULUM]</a>
             </div>
         </header>
 
