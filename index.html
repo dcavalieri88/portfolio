@@ -17,6 +17,7 @@
             --colore-caldo: #ff0055;
             --colore-elettrico: #0055ff;
             --colore-solare: #ffb703;
+            --colore-verde: #10b981;
             --spessore-bordo: 4px;
             --ombra: 6px 6px 0px #0f172a;
             --font-titolo: 'Space Grotesk', sans-serif;
@@ -125,6 +126,16 @@
             background-color: var(--colore-solare);
             color: var(--testo-principale);
             box-shadow: 4px 4px 0px var(--testo-principale);
+        }
+        .bottone.whatsapp {
+            background-color: var(--colore-verde);
+            color: #ffffff;
+            box-shadow: 4px 4px 0px var(--testo-principale);
+        }
+        .bottone.rubrica {
+            background-color: #ffffff;
+            color: var(--testo-principale);
+            box-shadow: 4px 4px 0px var(--colore-verde);
         }
         .barra-filtri {
             display: flex;
@@ -248,6 +259,8 @@
                     </p>
                     <div class="azioni-contatto">
                         <a href="mailto:d.cavalieri88@gmail.com" class="bottone">[SCRIVIMI]</a>
+                        <a href="https://wa.me/393472693646" target="_blank" class="bottone whatsapp">[WHATSAPP]</a>
+                        <a href="contatto.vcf" download class="bottone rubrica">[SALVA CONTATTO]</a>
                         <a href="https://www.linkedin.com/in/davide-cavalieri-80764449/" target="_blank" class="bottone secondario">[PROFILO PROFESSIONALE]</a>
                         <a href="Cavalieri2026.pdf" download class="bottone speciale">[SCARICA CURRICULUM]</a>
                     </div>
