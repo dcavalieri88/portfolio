@@ -68,8 +68,13 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
+        
+        /* Transizioni separate per colore (fluide) e movimenti (istantanee) */
+        body, .intestazione-principale, .riquadro, footer {
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+        
         body {
             background-color: var(--colore-sfondo);
             color: var(--testo-principale);
@@ -82,31 +87,33 @@
             margin: 0 auto;
         }
         
-        /* Corretto il padding dell'intestazione per dare respiro su mobile */
+        /* Intestazione */
         .intestazione-principale {
             background-color: var(--colore-card);
             border: var(--spessore-bordo) solid var(--testo-principale);
             box-shadow: var(--ombra);
-            padding: 20px; /* Più compatto su mobile per evitare compressioni */
+            padding: 20px;
             margin-bottom: 30px;
         }
         @media(min-width: 768px) {
             .intestazione-principale {
-                padding: 40px; /* Torna largo su desktop */
+                padding: 40px;
             }
         }
         
-        /* Gestione spazio e wrap per evitare collisioni dei tag in alto */
+        /* Barra Superiore & Tag */
         .barra-superiore {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 25px;
-            gap: 15px; /* Crea uno spazio minimo invalicabile tra i due bottoni */
-            flex-wrap: wrap; /* Se non c'è spazio, scendono uno sotto l'altro con ordine */
+            gap: 15px;
+            flex-wrap: wrap;
         }
         .stato-sistema {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             background-color: var(--colore-solare);
             color: #0f172a;
             font-family: var(--font-codice);
@@ -117,6 +124,33 @@
             box-shadow: 3px 3px 0px var(--testo-principale);
             white-space: nowrap;
         }
+        
+        /* Led animato */
+        .led-stato {
+            width: 8px;
+            height: 8px;
+            background-color: var(--colore-verde);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulsazione 1.6s infinite;
+        }
+        @keyframes pulsazione {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+
+        /* Bottone cambio tema con feedback tattile */
         .bottone-tema {
             background-color: var(--colore-card);
             color: var(--testo-principale);
@@ -128,6 +162,7 @@
             box-shadow: 3px 3px 0px var(--testo-principale);
             cursor: pointer;
             white-space: nowrap;
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s ease;
         }
         .bottone-tema:hover {
             transform: translate(-2px, -2px);
@@ -135,7 +170,7 @@
         }
         .bottone-tema:active {
             transform: translate(1px, 1px);
-            box-shadow: 2px 2px 0px var(--testo-principale);
+            box-shadow: 1px 1px 0px var(--testo-principale);
         }
 
         .intestazione-layout {
@@ -180,6 +215,8 @@
             font-size: 17px;
             color: var(--testo-attenuato);
         }
+        
+        /* Sezione contatti e Bottoni con feedback tattile */
         .azioni-contatto {
             display: flex;
             gap: 15px;
@@ -194,6 +231,7 @@
             }
         }
         .bottone {
+            display: inline-block;
             background-color: var(--testo-principale);
             color: var(--colore-card);
             font-family: var(--font-codice);
@@ -206,27 +244,55 @@
             cursor: pointer;
             white-space: nowrap;
             text-align: center;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
         }
+        .bottone:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 7px 7px 0px var(--colore-caldo);
+        }
+        .bottone:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px var(--testo-principale);
+        }
+        
+        /* Varianti colori ombre bottoni */
         .bottone.secondario {
             background-color: var(--colore-card);
             color: var(--testo-principale);
             box-shadow: 4px 4px 0px var(--colore-elettrico);
         }
+        .bottone.secondario:hover {
+            box-shadow: 7px 7px 0px var(--colore-elettrico);
+        }
+        
         .bottone.speciale {
             background-color: var(--colore-solare);
             color: #0f172a;
             box-shadow: 4px 4px 0px var(--testo-principale);
         }
+        .bottone.speciale:hover {
+            box-shadow: 7px 7px 0px var(--testo-principale);
+        }
+        
         .bottone.whatsapp {
             background-color: var(--colore-verde);
             color: #ffffff;
             box-shadow: 4px 4px 0px var(--testo-principale);
         }
+        .bottone.whatsapp:hover {
+            box-shadow: 7px 7px 0px var(--testo-principale);
+        }
+        
         .bottone.rubrica {
             background-color: var(--colore-card);
             color: var(--testo-principale);
             box-shadow: 4px 4px 0px var(--colore-verde);
         }
+        .bottone.rubrica:hover {
+            box-shadow: 7px 7px 0px var(--colore-verde);
+        }
+
+        /* Filtri */
         .barra-filtri {
             display: flex;
             gap: 10px;
@@ -243,11 +309,22 @@
             font-weight: 700;
             cursor: pointer;
             box-shadow: 3px 3px 0px var(--testo-principale);
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s ease, color 0.2s ease;
+        }
+        .bottone-filtro:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px var(--testo-principale);
+        }
+        .bottone-filtro:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px var(--testo-principale);
         }
         .bottone-filtro.attivo {
             background-color: var(--colore-elettrico);
             color: #ffffff;
         }
+        
+        /* Griglia e Card dinamiche */
         .griglia-contenuti {
             display: grid;
             grid-template-columns: 1fr;
@@ -266,7 +343,14 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease, border-color 0.2s ease;
         }
+        /* Effetto sollevamento card */
+        .riquadro:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0px var(--testo-principale);
+        }
+        
         .riquadro-intestazione {
             display: flex;
             justify-content: space-between;
@@ -359,7 +443,10 @@
     <div class="contenitore">
         <header class="intestazione-principale">
             <div class="barra-superiore">
-                <div class="stato-sistema">STATO: OPERATIVO E CONNESSO</div>
+                <div class="stato-sistema">
+                    <span class="led-stato"></span>
+                    STATO: OPERATIVO E CONNESSO
+                </div>
                 <button class="bottone-tema" id="btn-tema" onclick="toggleTema()">[MODO SCURO]</button>
             </div>
             <div class="intestazione-layout">
