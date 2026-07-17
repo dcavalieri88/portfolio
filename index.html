@@ -53,7 +53,6 @@
             --font-codice: 'JetBrains Mono', monospace;
         }
 
-        /* Variabili per la modalità scura */
         body.dark-mode {
             --colore-sfondo: #0f172a;
             --colore-card: #1e293b;
@@ -82,31 +81,41 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+        
+        /* Corretto il padding dell'intestazione per dare respiro su mobile */
         .intestazione-principale {
             background-color: var(--colore-card);
             border: var(--spessore-bordo) solid var(--testo-principale);
             box-shadow: var(--ombra);
-            padding: 40px;
+            padding: 20px; /* Più compatto su mobile per evitare compressioni */
             margin-bottom: 30px;
         }
+        @media(min-width: 768px) {
+            .intestazione-principale {
+                padding: 40px; /* Torna largo su desktop */
+            }
+        }
         
-        /* Barra di controllo superiore (Stato + Switch Tema) */
+        /* Gestione spazio e wrap per evitare collisioni dei tag in alto */
         .barra-superiore {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 25px;
+            gap: 15px; /* Crea uno spazio minimo invalicabile tra i due bottoni */
+            flex-wrap: wrap; /* Se non c'è spazio, scendono uno sotto l'altro con ordine */
         }
         .stato-sistema {
             display: inline-block;
             background-color: var(--colore-solare);
-            color: #0f172a; /* Testo sempre scuro per leggibilità sul giallo */
+            color: #0f172a;
             font-family: var(--font-codice);
             font-size: 12px;
             font-weight: 700;
             padding: 6px 12px;
             border: 2px solid var(--testo-principale);
             box-shadow: 3px 3px 0px var(--testo-principale);
+            white-space: nowrap;
         }
         .bottone-tema {
             background-color: var(--colore-card);
@@ -118,6 +127,7 @@
             border: 2px solid var(--testo-principale);
             box-shadow: 3px 3px 0px var(--testo-principale);
             cursor: pointer;
+            white-space: nowrap;
         }
         .bottone-tema:hover {
             transform: translate(-2px, -2px);
@@ -336,12 +346,11 @@
     </style>
 </head>
 <body>
-    <!-- Script di blocco immediato per evitare flash del tema chiaro se il tema scuro è attivo -->
+    <!-- Script di controllo tema: di default parte sempre BIANCO -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
             }
         })();
@@ -529,7 +538,6 @@
     </div>
 
     <script>
-        // Sistema di gestione del tema scuro / chiaro
         function applicaTestoBottone(isDark) {
             const btn = document.getElementById('btn-tema');
             if (btn) {
@@ -543,13 +551,11 @@
             applicaTestoBottone(isDark);
         }
 
-        // Sincronizza il testo del bottone all'avvio della pagina
         document.addEventListener('DOMContentLoaded', () => {
             const isDarkActive = document.body.classList.contains('dark-mode');
             applicaTestoBottone(isDarkActive);
         });
 
-        // Logica per i filtri di ricerca
         function filtraRiquadri(categoria, elemento) {
             const riquadri = document.querySelectorAll('.riquadro');
             const bottoni = document.querySelectorAll('.bottone-filtro');
